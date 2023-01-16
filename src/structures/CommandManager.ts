@@ -4,8 +4,7 @@ import { resolve } from 'path';
 import { ICommandManagerEvents } from '../util';
 
 export declare interface CommandManager {
-	on<U extends keyof ICommandManagerEvents>(event: U, listener: ICommandManagerEvents[U]): this;
-	emit<U extends keyof ICommandManagerEvents>(event: U, ...args: Parameters<ICommandManagerEvents[U]>): boolean;
+	emit<U extends keyof ICommandManagerEvents>(event: U, ...args: ICommandManagerEvents[U]): boolean;
 }
 
 export class CommandManager extends AtomModule {
@@ -30,9 +29,11 @@ export class CommandManager extends AtomModule {
 				throw new Error(e);
 			}
 		}
-
 		setImmediate(() => {
 			this.emit('commandsLoaded', true);
 		});
 	}
+
+	// Note skipping check will likely lead to duplicate command entries if they are slash commands.
+	async loadAllCommands(skipCheck: boolean) {}
 }

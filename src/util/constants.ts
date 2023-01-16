@@ -1,6 +1,8 @@
+import { ClientEvents } from 'discord.js';
+
 export interface ICommandManagerEvents {
-	commandsLoaded: (loaded: boolean) => void;
-	commandsCleared: (cleared: boolean) => void;
+	commandsLoaded: [loaded: boolean];
+	commandsCleared: [cleared: boolean];
 }
 
 export interface IMessageCommandOptions {
@@ -15,3 +17,11 @@ export interface ISlashCommandOptions extends IMessageCommandOptions {
 }
 
 export interface IAtomClientOptions {}
+
+export type UnionEvents = keyof ICommandManagerEvents | keyof ClientEvents;
+export type IntersectedEvents = ICommandManagerEvents & ClientEvents;
+
+export interface IEventOptions {
+	event: UnionEvents | string;
+	type?: 'on' | 'once';
+}
