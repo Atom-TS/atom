@@ -1,0 +1,21 @@
+{
+  "name": "atom",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "discord-api-types": "^0.37.28",
+    "prettier": "^2.8.3",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "test": "ts-node ./test/index.ts"
+  }
+}
